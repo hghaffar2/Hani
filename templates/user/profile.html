@@ -1,0 +1,97 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block title %}            {{ user.first_name }}          {% endblock %}
+
+
+
+{% block content %}
+
+    <div class="container">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">{{ user.first_name }} {{user.last_name}}
+        <small></small>
+      </h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-md-8">
+          <div id="map"></div>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="my-3">Project Description</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+          <h3 class="my-3">{{user.first_name}} personal information</h3>
+          <ul>
+            <li>{{ user.email }}</li>
+            <li>{{user.phone}}</li>
+            <li>{{user.city}}</li>
+            {% if user.gender == 'M' %}
+            <li>Male</li>
+            {% else %}
+            <li>Female</li>
+            {% endif %}
+          </ul>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+      <!-- Related Projects Row -->
+      <h3 class="my-4">Related Projects</h3>
+
+      <div class="row">
+
+        {% for photo in photos %}
+
+        <div class="col-md-3 col-sm-6 mb-4">
+          <a href="#">
+            <img id="profile" class="img-fluid" src="{{photo.picture.url}}" alt="">
+          </a>
+        </div>
+
+        {% endfor %}
+
+
+
+        <div class="col-md-3 col-sm-6 mb-4">
+
+          <form method="post" action="{% url 'subImg' %}" >
+                {% csrf_token %}
+            <button type="submit" ><img class="img-fluid" src="http://placehold.it/500x300" alt=""></button>
+           </form>
+
+        </div>
+
+
+      </div>
+                            <div class="pagination">
+    <span class="step-links">
+
+       <ul class="pagination">
+        {% if photos.has_previous %}
+         <li class="page-item" >  <a class="page-link" href="?page=1">&laquo; first</a></li>
+         <li class="page-item"> <a class="page-link" href="?page={{ photos.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        <span class="current">
+          <li class="page-item" ><span class="page-link">Page {{ photos.number }} of {{ photos.paginator.num_pages }} </span> </li>
+        </span>
+
+        {% if photos.has_next %}
+         <li class="page-item"> <a class="page-link" href="?page={{ photos.next_page_number }}">next</a></li>
+         <li class="page-item"><a class="page-link" href="?page={{ photos.paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+       </ul>
+    </span>
+</div>
+
+      <!-- /.row -->
+
+    </div>
+
+
+{% endblock %}

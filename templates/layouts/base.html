@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+{% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} {% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+    <style>
+
+
+        #map{
+
+            height: 400px;
+            width:700px; }
+
+#profile
+    {
+        width:300px;
+        height :150px;
+
+    }
+
+
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'listing' %}">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+<!--<div class="container h-100">-->
+      <!--<div class="d-flex justify-content-center h-100">-->
+        <!--<div class="searchbar">-->
+            <!--<form  method="post" action=" url 'SearchData' ">-->
+                <!--{% csrf_token %}-->
+          <!--<input id="movie_search" type="text" value="{{search}}" name="search" placeholder="Search...">-->
+                <!--<select name="option" >-->
+
+
+                    <!--<option value="movie" >Movies</option>-->
+                    <!--<option value="year" >Year</option>-->
+                    <!--<option value="category" >Category</option>-->
+                    <!--<option value="all" >All</option>-->
+
+
+
+
+          <!--</select>-->
+                <!--<input type="submit" value="search" />-->
+
+                <!--</form>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="  url 'Home'  ">Career
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+              <li class="nav-item">
+
+                  {% if user.is_authenticated %}
+
+                  <a class="nav-link" href="{% url 'logout' %}">logout</a>
+
+                  {% else %}
+
+                  <a class="nav-link" href="{% url 'login' %}">login</a>
+
+                  {% endif %}
+              </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div class="container" >
+
+{% block content %}
+
+
+{% endblock %}
+
+</div>
+
+
+
+<footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+
+<script>
+
+           var map = L.map('map', {
+     center: [30.044281, 31.340002],
+     zoom: 15
+   });
+   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+   }).addTo(map);
+
+   L.marker([30.044281, 31.340002]).addTo(map);
+
+
+
+</script>
+
+  </body>
+
+</html>

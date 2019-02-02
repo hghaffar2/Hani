@@ -1,0 +1,22 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: mehany_3@hotmail.com
+Date: Wed, 30 Jan 2019 18:13:58 -0000
+Message-ID: <154887203864.2920.15476261754285885230@DESKTOP-KIHQ3KN>
+
+
+To initiate the password reset process for your hani TestSite Account,
+click the link below:
+
+http://localhost:8000/accounts/reset/Mw/53f-9c8c0220ed22d6d88286/
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser
+window instead.
+
+Sincerely,
+The TestSite Team
+
+-------------------------------------------------------------------------------
